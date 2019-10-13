@@ -1,0 +1,58 @@
+html,
+body,
+#root{
+  height: 100%;
+}
+
+.App {
+  height: 100%;
+  text-align: center;
+  display: grid;
+  grid-template-areas:
+        "header header header"
+        "nav content content";
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 270px 1fr;
+  background-color: #fff;
+  font-size: 16px;
+}
+
+.app-header{
+  grid-area: header;
+  background-color: #021224;
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  padding: 0 15px;
+  .logo{
+    height: 60px;
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+}
+
+.app-nav{
+  grid-area: nav;
+  background-color: #0C2949;
+}
+
+.nav-list{
+  display: block;
+  list-style: none;
+  padding: 20px 0 0 30px;
+  margin: 0;
+  &__item{
+    text-align: left;
+    > a {
+      color: #AEABCD;
+      text-decoration: none;
+      display: block;
+      padding: 5px 0;
+      transition: color ease 0.3s;
+      &:hover{
+        color: #fff;
+      }
+    }
+  }
+}
