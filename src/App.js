@@ -1,33 +1,17 @@
-import React from 'react';
-import './App.scss';
-import logo from './images/logo/logo.png';
+import React from "react";
+import "./App.scss";
+import Header from "./components/header/Header";
+import Sidebar from "./components/sidebar/Sidebar";
+import Content from "./components/Content/Content";
 
 function App() {
-
-    console.log(logo)
-
-    return (
-        <div className="App">
-            <header className="app-header">
-                <div className="logo">
-                    <img src={logo} alt=""/>
-                </div>
-            </header>
-            <nav className="app-nav">
-                <ul className="nav-list">
-                    <li className="nav-list__item">
-                        <a href="#">Profile</a>
-                    </li>
-                    <li className="nav-list__item">
-                        <a href="#">Message</a>
-                    </li>
-                    <li className="nav-list__item">
-                        <a href="#">Link 3</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    );
+  return (
+    <div className="App">
+      <Header />
+      <Sidebar />
+      <Content />
+    </div>
+  );
 }
 
 export default App;

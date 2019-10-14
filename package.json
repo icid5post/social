@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "husky": "^3.0.9",
+    "lint-staged": "^9.4.2",
     "node-sass": "^4.12.0",
+    "prettier": "^1.18.2",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-scripts": "3.2.0"
@@ -28,5 +31,16 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "husky": {
+    "hooks": {
+        "pre-commit": "lint-staged"
+    }
+  },
+   "lint-staged": {
+     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+       "prettier --write",
+       "git add"
+     ]
   }
 }

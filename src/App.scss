@@ -1,6 +1,6 @@
 html,
 body,
-#root{
+#root {
   height: 100%;
 }
 
@@ -9,21 +9,21 @@ body,
   text-align: center;
   display: grid;
   grid-template-areas:
-        "header header header"
-        "nav content content";
+    "header header header"
+    "nav content content";
   grid-template-rows: 60px 1fr;
   grid-template-columns: 270px 1fr;
   background-color: #fff;
   font-size: 16px;
 }
 
-.app-header{
+.app-header {
   grid-area: header;
   background-color: #021224;
   display: grid;
   grid-template-columns: 120px 1fr;
   padding: 0 15px;
-  .logo{
+  .logo {
     height: 60px;
     img {
       max-width: 100%;
@@ -32,25 +32,25 @@ body,
   }
 }
 
-.app-nav{
+.app-nav {
   grid-area: nav;
-  background-color: #0C2949;
+  background-color: #0c2949;
 }
 
-.nav-list{
+.nav-list {
   display: block;
   list-style: none;
   padding: 20px 0 0 30px;
   margin: 0;
-  &__item{
+  &__item {
     text-align: left;
     > a {
-      color: #AEABCD;
+      color: #aeabcd;
       text-decoration: none;
       display: block;
       padding: 5px 0;
       transition: color ease 0.3s;
-      &:hover{
+      &:hover {
         color: #fff;
       }
     }
