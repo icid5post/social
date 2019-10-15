@@ -1,0 +1,27 @@
+.appNav {
+  grid-area: nav;
+  background-color: rgb(238, 238, 238);
+}
+
+.navList {
+  display: block;
+  list-style: none;
+  padding: 20px 0 0 30px;
+  margin: 0;
+  &__item {
+    text-align: left;
+    > a {
+      color: #333;
+      text-decoration: none;
+      display: block;
+      padding: 5px 0;
+      transition: color ease 0.3s;
+      &:hover {
+        color: rgba(233, 73, 73, 0.8);
+      }
+      &.navActive {
+        color: rgb(233, 73, 73);
+      }
+    }
+  }
+}

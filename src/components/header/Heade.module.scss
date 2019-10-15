@@ -1,0 +1,14 @@
+.header {
+  background-color: rgb(45, 45, 45);
+  grid-area: header;
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  padding: 0 15px;
+  .logo {
+    height: 60px;
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+}

@@ -1,0 +1,13 @@
+.dialogs {
+  display: grid;
+  grid-template-columns: 270px 1fr;
+  grid-template-areas: "dialogs messages";
+  grid-template-rows: 1fr;
+  height: 100%;
+}
+
+.dialogsGroup {
+  padding: 5px;
+  grid-area: dialogs;
+  border-right: 1px solid #f5f5f5;
+}
