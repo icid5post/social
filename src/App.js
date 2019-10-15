@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.scss";
-import Header from "./components/header/Header";
-import Sidebar from "./components/sidebar/Sidebar";
+import Header from "./components/Header/Header";
+import Sidebar from "./components/Sidebar/Sidebar";
 import Profile from "./Pages/Profile";
 import Dialogs from "./Pages/Dialogs";
 import { BrowserRouter, Route } from "react-router-dom";
