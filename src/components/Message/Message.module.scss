@@ -1,0 +1,16 @@
+@import "../../styles/variables";
+
+.message {
+  margin-bottom: 15px;
+  display: grid;
+  justify-self: end;
+  &__text {
+    display: inline-block;
+    background-color: $primary-color;
+    padding: 10px;
+    color: #fff;
+    border-radius: 20px;
+    justify-self: end;
+    align-self: end;
+  }
+}

@@ -1,14 +1,10 @@
 import React from "react";
 import MyPosts from "./MyPosts/MyPosts";
-
-class Profile extends React.Component {
+import MyPostContainer from "./MyPosts/MyPostContainer";
+class ProfilePage extends React.Component {
   render() {
-    return (
-      <div>
-        <MyPosts />
-      </div>
-    );
+    return <MyPostContainer />;
   }
 }
 
-export default Profile;
+export default ProfilePage;

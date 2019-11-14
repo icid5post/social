@@ -1,6 +1,6 @@
 .dialogs {
   display: grid;
-  grid-template-columns: 270px 1fr;
+  grid-template-columns: 270px minmax(500px, 1000px);
   grid-template-areas: "dialogs messages";
   grid-template-rows: 1fr;
   height: 100%;
@@ -10,4 +10,12 @@
   padding: 5px;
   grid-area: dialogs;
   border-right: 1px solid #f5f5f5;
+}
+
+.messages {
+  grid-area: messages;
+  background-color: #f5f5f5;
+  padding: 10px;
+  display: grid;
+  grid-template-rows: 1fr;
 }

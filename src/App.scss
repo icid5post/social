@@ -12,7 +12,7 @@ body,
     "header header header"
     "nav content content";
   grid-template-rows: 60px 1fr;
-  grid-template-columns: 270px 2fr;
+  grid-template-columns: 220px 2fr;
   background-color: #fff;
   font-size: 16px;
 }
@@ -26,6 +26,5 @@ body,
   max-width: 970px;
   margin-left: auto;
   margin-right: auto;
-  background: #fafafa;
   padding: 0 5px;
 }

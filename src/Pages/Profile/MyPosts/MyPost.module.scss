@@ -1,0 +1,41 @@
+@import "../../../styles/variables";
+
+.post {
+  border: 1px solid $border-base;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 5px 0;
+}
+
+.images {
+  display: block;
+  margin-bottom: 20px;
+  img {
+    width: 100%;
+  }
+}
+
+.commentsList {
+  margin-bottom: 15px;
+  padding: 0 15px;
+}
+
+.commentForm {
+  display: grid;
+  grid-template-columns: 60px 1fr 80px;
+  grid-gap: 10px;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.commentForm__ava {
+  display: block;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #ddd;
+}
+
+.addButton {
+  align-self: center;
+}

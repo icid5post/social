@@ -1,6 +1,9 @@
+@import "../../styles/variables";
+
 .appNav {
   grid-area: nav;
-  background-color: rgb(238, 238, 238);
+  background-color: #fff;
+  border-right: 1px solid $border-base;
 }
 
 .navList {

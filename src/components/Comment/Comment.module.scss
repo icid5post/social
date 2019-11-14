@@ -1,0 +1,17 @@
+@import "../../styles/variables";
+
+.comment {
+  margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  margin-bottom: 15px;
+  &__avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ddd;
+  }
+  &__text {
+    padding-top: 10px;
+  }
+}
