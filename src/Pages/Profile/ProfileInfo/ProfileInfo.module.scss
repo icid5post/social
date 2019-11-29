@@ -1,0 +1,21 @@
+.profileInfo {
+  padding: 10px 0;
+  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: 100px 1fr;
+}
+
+.avatar {
+  border-radius: 50%;
+  overflow: hidden;
+  width: 100px;
+  height: 100px;
+  img {
+    max-height: 100%;
+    max-width: 100%;
+  }
+}
+
+.description {
+  padding: 10px;
+}

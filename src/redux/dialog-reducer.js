@@ -61,4 +61,12 @@ const dialogReducer = (state = initialState, action) => {
   }
 };
 
+export const messageChange = body => dispatch => {
+  dispatch(dialogMessageChangeCreator(body));
+};
+
+export const sendMessage = () => dispatch => {
+  dispatch(addDialogMessageCreator());
+};
+
 export default dialogReducer;

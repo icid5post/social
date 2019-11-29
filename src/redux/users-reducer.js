@@ -1,6 +1,11 @@
+import { usersApi } from "../api/api";
+import * as axios from "axios/index";
+
 const FETCHING_USERS_SUCCESS = "FETCHING_USERS_SUCCESS";
+const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
+const FOLLOW_FETCHING = "FOLLOW_FETCHING";
 
 export const fetchingUsers = users => {
   return {
@@ -23,23 +28,27 @@ export const unfollowUser = userId => {
   };
 };
 
+export const setCurrentPage = page => {
+  return {
+    type: SET_CURRENT_PAGE,
+    payload: page
+  };
+};
+
+export const setFollowFetching = (isFetching, id) => {
+  return {
+    type: FOLLOW_FETCHING,
+    isFetching: isFetching,
+    userId: id
+  };
+};
+
 const initialState = {
-  users: [
-    // {
-    //     id: 1,
-    //     name: "Valera",
-    //     follow: true,
-    //     country: "Ukraina",
-    //     status: "Hello i'm BOSS"
-    // },
-    // {
-    //     id: 2,
-    //     name: "Yarik",
-    //     follow: false,
-    //     country: "Ukraina",
-    //     status: "Hello i'm BOSS"
-    // },
-  ]
+  users: [],
+  totalCount: 0,
+  currentPage: 1,
+  pageSize: 5,
+  followedProgress: []
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -47,7 +56,8 @@ const usersReducer = (state = initialState, action) => {
     case FETCHING_USERS_SUCCESS: {
       return {
         ...state,
-        users: action.payload
+        users: action.payload.items,
+        totalCount: action.payload.totalCount
       };
     }
     case FOLLOW: {
@@ -57,7 +67,7 @@ const usersReducer = (state = initialState, action) => {
           if (user.id === action.payload) {
             return {
               ...user,
-              follow: true
+              followed: true
             };
           } else {
             return user;
@@ -72,7 +82,7 @@ const usersReducer = (state = initialState, action) => {
           if (user.id === action.payload) {
             return {
               ...user,
-              follow: false
+              followed: false
             };
           } else {
             return user;
@@ -80,9 +90,51 @@ const usersReducer = (state = initialState, action) => {
         })
       };
     }
+    case FOLLOW_FETCHING: {
+      return {
+        ...state,
+        followedProgress: action.isFetching
+          ? [...state.followedProgress, action.userId]
+          : state.followedProgress.filter(id => id !== action.userId)
+      };
+    }
+    case SET_CURRENT_PAGE: {
+      return {
+        ...state,
+        currentPage: action.payload
+      };
+    }
     default:
       return state;
   }
+};
+
+export const getUsers = (currentPage, pageSize) => dispatch => {
+  usersApi.getUsers(currentPage, pageSize).then(data => {
+    dispatch(fetchingUsers(data));
+  });
+  dispatch(setCurrentPage(currentPage));
+};
+
+export const followSuccess = id => dispatch => {
+  dispatch(setFollowFetching(true, id));
+  usersApi.followUser(id).then(response => {
+    console.log(response.resultCode);
+    if (response.resultCode === 0) {
+      dispatch(followUser(id));
+    }
+    dispatch(setFollowFetching(false, id));
+  });
+};
+
+export const unfollowSuccess = id => dispatch => {
+  dispatch(setFollowFetching(true, id));
+  usersApi.unfollowUser(id).then(response => {
+    if (response.resultCode === 0) {
+      dispatch(unfollowUser(id));
+    }
+    dispatch(setFollowFetching(false, id));
+  });
 };
 
 export default usersReducer;

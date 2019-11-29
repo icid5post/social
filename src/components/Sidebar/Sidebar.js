@@ -16,6 +16,11 @@ const Sidebar = () => {
             Message
           </NavLink>
         </li>
+        <li className={classes.navList__item}>
+          <NavLink to="/users" activeClassName={classes.navActive}>
+            Users
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );

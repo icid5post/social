@@ -1,30 +1,33 @@
 import React from "react";
 import { connect } from "react-redux";
 import Dialogs from "./Dialogs";
-import {
-  addDialogMessageCreator,
-  dialogMessageChangeCreator
-} from "../../redux/dialog-reducer";
+import { messageChange, sendMessage } from "../../redux/dialog-reducer";
+import { Redirect, withRouter } from "react-router-dom";
+import { compose } from "redux";
+import { WithAutorization } from "../../components/Hoc/WithAutorization";
+
+class DialogsContainer extends React.Component {
+  render() {
+    return <Dialogs {...this.props} />;
+  }
+}
 
 const mapStateToProps = state => {
   return {
-    dialogPage: state.dialogPage
+    dialogPage: state.dialogPage,
+    isAuth: state.authReducer.isAuth
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    updateDialogMessage: body => {
-      console.log(body);
-      dispatch(dialogMessageChangeCreator(body));
-    },
-    sendDialogMessage: () => dispatch(addDialogMessageCreator())
-  };
+const mapDispatchToProps = {
+  messageChange,
+  sendMessage
 };
 
-const DialogsContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Dialogs);
-
-export default DialogsContainer;
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )
+  // WithAutorization,
+)(DialogsContainer);
