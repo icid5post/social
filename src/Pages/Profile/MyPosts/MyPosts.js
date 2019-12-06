@@ -3,7 +3,7 @@ import classes from "./MyPost.module.scss";
 import Textarea from "../../../components/Ui/Textarea/Textarea";
 import Comment from "../Comment/Comment";
 
-const MyPosts = props => {
+const MyPosts = React.memo(props => {
   const ref = React.createRef();
 
   const addNewPost = () => {
@@ -14,6 +14,8 @@ const MyPosts = props => {
     let message = ref.current.value;
     props.postTextChange(message);
   };
+
+  console.log("render ro");
 
   return (
     <div className={classes.post}>
@@ -40,6 +42,6 @@ const MyPosts = props => {
       </div>
     </div>
   );
-};
+});
 
 export default MyPosts;

@@ -109,32 +109,38 @@ const usersReducer = (state = initialState, action) => {
   }
 };
 
-export const getUsers = (currentPage, pageSize) => dispatch => {
+export const requestUsers = (currentPage, pageSize) => dispatch => {
   usersApi.getUsers(currentPage, pageSize).then(data => {
     dispatch(fetchingUsers(data));
   });
   dispatch(setCurrentPage(currentPage));
 };
 
-export const followSuccess = id => dispatch => {
-  dispatch(setFollowFetching(true, id));
-  usersApi.followUser(id).then(response => {
-    console.log(response.resultCode);
-    if (response.resultCode === 0) {
-      dispatch(followUser(id));
-    }
-    dispatch(setFollowFetching(false, id));
-  });
+const followUnfollowFlow = async (
+  dispatch,
+  apiMethod,
+  userId,
+  actionCreator
+) => {
+  dispatch(setFollowFetching(true, userId));
+  let response = await apiMethod(userId);
+  if (response.resultCode === 0) {
+    dispatch(actionCreator(userId));
+  }
+
+  dispatch(setFollowFetching(false, userId));
 };
 
-export const unfollowSuccess = id => dispatch => {
-  dispatch(setFollowFetching(true, id));
-  usersApi.unfollowUser(id).then(response => {
-    if (response.resultCode === 0) {
-      dispatch(unfollowUser(id));
-    }
-    dispatch(setFollowFetching(false, id));
-  });
+export const followSuccess = id => async dispatch => {
+  let method = usersApi.followUser.bind(usersApi);
+  let actionCreator = followUser;
+  followUnfollowFlow(dispatch, method, id, actionCreator);
+};
+
+export const unfollowSuccess = id => async dispatch => {
+  let method = usersApi.unfollowUser.bind(usersApi);
+  let actionCreator = unfollowUser;
+  followUnfollowFlow(dispatch, method, id, actionCreator);
 };
 
 export default usersReducer;

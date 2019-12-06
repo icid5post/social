@@ -1,11 +1,18 @@
 import React from "react";
 import { connect } from "react-redux";
 import {
-  getUsers,
+  requestUsers,
   followSuccess,
   unfollowSuccess
 } from "../../redux/users-reducer";
 import Users from "./Users";
+import {
+  getCurrentPage,
+  getFollowedProgress,
+  getPageSize,
+  getTotalCount,
+  getUsers
+} from "../../redux/users-selectors";
 
 class UsersListContainer extends React.Component {
   componentDidMount() {
@@ -23,18 +30,18 @@ class UsersListContainer extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    users: state.usersPage.users,
-    totalCount: state.usersPage.totalCount,
-    currentPage: state.usersPage.currentPage,
-    pageSize: state.usersPage.pageSize,
-    followedProgress: state.usersPage.followedProgress
+    users: getUsers(state),
+    totalCount: getTotalCount(state),
+    currentPage: getCurrentPage(state),
+    pageSize: getPageSize(state),
+    followedProgress: getFollowedProgress(state)
   };
 };
 
 const mapDispatchToProps = {
   followSuccess,
   unfollowSuccess,
-  getUsers
+  getUsers: requestUsers
 };
 
 export default connect(

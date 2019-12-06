@@ -4,7 +4,6 @@ import image from "./avatar.jpg";
 
 const ProfileInfo = props => {
   const avatar = props.user.photos.large ? props.user.photos.large : image;
-  console.log(props, "rk-test");
   return (
     <div className={classes.profileInfo}>
       <div className={classes.avatar}>

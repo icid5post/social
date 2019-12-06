@@ -1,6 +1,7 @@
 import { profileApi } from "../api/api";
 
 const ADD_POST = "AD_POST";
+const DELETE_POST = "DELETE_POST";
 const POST_TEXT_CHANGE = "POST_TEXT_CHANGE";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
 const SET_PROFILE_STATUS = "SET_PROFILE_STATUS";
@@ -8,6 +9,11 @@ const UPDATE_PROFILE_STATUS = "UPDATE_PROFILE_STATUS";
 
 export const addPost = () => ({
   type: ADD_POST
+});
+
+export const deletePost = id => ({
+  type: DELETE_POST,
+  payload: id
 });
 
 export const postTextChange = value => ({
@@ -86,6 +92,15 @@ const profileReducer = (state = initialState, action) => {
         myPosts: {
           newPostText: "",
           posts: [...state.myPosts.posts, newPost]
+        }
+      };
+    }
+    case DELETE_POST: {
+      return {
+        ...state,
+        myPosts: {
+          ...state.myPosts,
+          posts: state.myPosts.posts.filter(item => item.id !== action.payload)
         }
       };
     }
