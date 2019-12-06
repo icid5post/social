@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "./Pagination.module.scss";
 
 const Pagination = props => {
@@ -6,9 +6,15 @@ const Pagination = props => {
 
   let items = [];
 
-  for (let i = 1; i <= props.range; i++) {
+  for (let i = 1; i <= total; i++) {
     items.push(i);
   }
+
+  let portionCount = Math.ceil(total / props.range);
+  let [portionNumber, setPortionNumber] = useState(1);
+
+  let leftPortionCount = (portionNumber - 1) * props.range + 1;
+  let rightPortionCount = portionNumber * props.range;
 
   const getPages = page => {
     if (total === 1) {
@@ -18,25 +24,36 @@ const Pagination = props => {
   };
 
   return (
-    <ul className={classes.pagination}>
-      {items.map(p => {
-        return (
-          <li key={p}>
-            <a
-              href="#"
-              className={
-                props.current === p
-                  ? classes.paginationButton + " " + classes.current
-                  : classes.paginationButton
-              }
-              onClick={() => getPages(p)}
-            >
-              {p}
-            </a>
-          </li>
-        );
-      })}
-    </ul>
+    <div>
+      {portionNumber > 1 && (
+        <button onClick={() => setPortionNumber(portionNumber - 1)}>-</button>
+      )}
+
+      <ul className={classes.pagination}>
+        {items
+          .filter(item => item >= leftPortionCount && item <= rightPortionCount)
+          .map(item => {
+            return (
+              <li key={item}>
+                <a
+                  href="#"
+                  className={
+                    props.current === item
+                      ? classes.paginationButton + " " + classes.current
+                      : classes.paginationButton
+                  }
+                  onClick={() => getPages(item)}
+                >
+                  {item}
+                </a>
+              </li>
+            );
+          })}
+      </ul>
+      {portionNumber < portionCount && (
+        <button onClick={() => setPortionNumber(portionNumber + 1)}>+</button>
+      )}
+    </div>
   );
 };
 
