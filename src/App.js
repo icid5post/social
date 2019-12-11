@@ -1,15 +1,28 @@
-import React from "react";
+import React, { Suspense } from "react";
 import "./App.scss";
 import Sidebar from "./components/Sidebar/Sidebar";
-import ProfilePage from "./Pages/Profile/ProfileContainer";
 import UsersListContainer from "./Pages/Users/UsersContainer";
-import { BrowserRouter, Route, withRouter } from "react-router-dom";
+import { HashRouter, Route, withRouter } from "react-router-dom";
 import DialogsPage from "./Pages/Dialogs";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import LoginContainer from "./Pages/Login/LoginContainer";
 import { compose } from "redux";
 import { initializedApp } from "./redux/app-reducer";
 import { connect } from "react-redux";
+
+const ProfilePageLoader = React.lazy(() =>
+  import("./Pages/Profile/ProfileContainer")
+);
+
+function ProfilePage() {
+  return (
+    <div>
+      <Suspense fallback={<div>Загрузка...</div>}>
+        <ProfilePageLoader />
+      </Suspense>
+    </div>
+  );
+}
 
 class App extends React.Component {
   componentDidMount() {
@@ -20,7 +33,7 @@ class App extends React.Component {
       return <p>Loading...</p>;
     } else {
       return (
-        <BrowserRouter>
+        <HashRouter>
           <div className="App">
             <HeaderContainer />
             <Sidebar />
@@ -40,7 +53,7 @@ class App extends React.Component {
               <Route render={() => <LoginContainer />} path={"/login"} />
             </div>
           </div>
-        </BrowserRouter>
+        </HashRouter>
       );
     }
   }
