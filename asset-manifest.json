@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/icid5post/social/static/css/main.57ffdce4.chunk.css",
+    "main.js": "/icid5post/social/static/js/main.c502854b.chunk.js",
+    "main.js.map": "/icid5post/social/static/js/main.c502854b.chunk.js.map",
+    "runtime-main.js": "/icid5post/social/static/js/runtime-main.84185f6e.js",
+    "runtime-main.js.map": "/icid5post/social/static/js/runtime-main.84185f6e.js.map",
+    "static/js/2.9cf68e7d.chunk.js": "/icid5post/social/static/js/2.9cf68e7d.chunk.js",
+    "static/js/2.9cf68e7d.chunk.js.map": "/icid5post/social/static/js/2.9cf68e7d.chunk.js.map",
+    "static/css/3.f01870d7.chunk.css": "/icid5post/social/static/css/3.f01870d7.chunk.css",
+    "static/js/3.71bec99b.chunk.js": "/icid5post/social/static/js/3.71bec99b.chunk.js",
+    "static/js/3.71bec99b.chunk.js.map": "/icid5post/social/static/js/3.71bec99b.chunk.js.map",
+    "index.html": "/icid5post/social/index.html",
+    "precache-manifest.7721069c2b47bcade38ef9bb69b307f1.js": "/icid5post/social/precache-manifest.7721069c2b47bcade38ef9bb69b307f1.js",
+    "service-worker.js": "/icid5post/social/service-worker.js",
+    "static/css/3.f01870d7.chunk.css.map": "/icid5post/social/static/css/3.f01870d7.chunk.css.map",
+    "static/css/main.57ffdce4.chunk.css.map": "/icid5post/social/static/css/main.57ffdce4.chunk.css.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.84185f6e.js",
+    "static/js/2.9cf68e7d.chunk.js",
+    "static/css/main.57ffdce4.chunk.css",
+    "static/js/main.c502854b.chunk.js"
+  ]
+}
